@@ -7,18 +7,18 @@ using UnityEngine.UI;
 [RequireComponent(typeof(AudioSource))]
 public class TextSwitcher : MonoBehaviour
 {
-    [SerializeField] private TextAsset _inputFile; //файл с репликами
-    [SerializeField] private GameObject _textField; //текстовое поле
-    [SerializeField] private WordScenarioGenerator _wordScenarioGenerator; //генератор слов
+    [SerializeField] private TextAsset _inputFile; //пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+    [SerializeField] private GameObject _textField; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
+    [SerializeField] private WordScenarioGenerator _wordScenarioGenerator; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
     [SerializeField] private Camera _mainCamera;
-    [SerializeField] private AudioClip[] _audioClips; //звучащие реплики
+    [SerializeField] private AudioClip[] _audioClips; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
     private Text _textChange;
     private AudioSource _audioSource;
 
     private int _currentIndex;
     private string[] _text;
-    private bool _isGameStarted; //проверка, начиналась ли игра
+    private bool _isGameStarted; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ
 
     private static readonly string MAIN_MENU = "MainMenu";
 
@@ -32,14 +32,14 @@ public class TextSwitcher : MonoBehaviour
         ChangeText();
     }
 
-    public void ChangeText() //меняет текст и включает анимацию разговора учителя
+    public void ChangeText() //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     {
-        if (_currentIndex % 3 == 0 && !_isGameStarted && _currentIndex != 0) //каждую 3 реплику запускает игру
+        if (_currentIndex % 3 == 0 && !_isGameStarted && _currentIndex != 0) //пїЅпїЅпїЅпїЅпїЅпїЅ 3 пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
         {
             StartGame();
             return;
         }
-        if (_currentIndex == _text.Length) //переход в главное меню после последней реплики
+        if (_currentIndex == _text.Length) //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         {
             SceneManager.LoadScene(MAIN_MENU);
             return;
@@ -50,14 +50,14 @@ public class TextSwitcher : MonoBehaviour
         _textChange.text = _text[_currentIndex++];
     }
 
-    private void PlayAudio() //озвучка реплик
+    private void PlayAudio() //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
     {
         _audioSource.Stop();
         _audioSource.clip = _audioClips[_currentIndex];
         _audioSource.Play();
     }
 
-    private void StartGame() //начинает игру и отключает анимацию учителя
+    private void StartGame() //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     {
         _isGameStarted = true;
 
@@ -73,7 +73,7 @@ public class TextSwitcher : MonoBehaviour
 
         var width = _mainCamera.pixelWidth;
         var height = _mainCamera.pixelHeight;
-        if (width < height || width/height == 16/9)
+        if (width < height || Mathf.Abs((float)width / height - 16f / 9f) < 0.01f)
         {
             _textChange.fontSize = 70;
         }

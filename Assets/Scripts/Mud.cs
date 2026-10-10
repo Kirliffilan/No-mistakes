@@ -23,14 +23,14 @@ public class Mud : MonoBehaviour
 
     private void OnEnable()
     {
-        _currentHp = _maxHp;
+        _currentHp = Math.Max(1, _maxHp);
         _audioSource.Play(); //проигрывание звука шлепка грязи
     }
 
     public void OnClick()
     {
         _currentHp--; //уменьшение количества кликов по грязи
-        if (_currentHp < 0) _animator.SetTrigger(BREAK_MUD); //проигрывание анимации ломания грязи
+        if (_currentHp <= 0) _animator.SetTrigger(BREAK_MUD); //проигрывание анимации ломания грязи
     }
 
     public void Disable() //вызывается в анимации BreakMud

@@ -6,11 +6,11 @@ using UnityEngine.UI;
 [RequireComponent(typeof(AudioSource))]
 public class ShowAnswers : MonoBehaviour
 {
-    [SerializeField] private TextAsset _inputFile; //файл с репликами
-    [SerializeField] private GameObject _textField; //текстовое поле
-    [SerializeField] private WordScenarioGenerator _wordScenarioGenerator; //генератор слов
+    [SerializeField] private TextAsset _inputFile; //пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+    [SerializeField] private GameObject _textField; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
+    [SerializeField] private WordScenarioGenerator _wordScenarioGenerator; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
     [SerializeField] private Camera _mainCamera;
-    [SerializeField] private AudioClip[] _audioClips; //звучащие реплики
+    [SerializeField] private AudioClip[] _audioClips; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
     private Text _textChange;
     private AudioSource _audioSource;
@@ -32,26 +32,26 @@ public class ShowAnswers : MonoBehaviour
         ShowText();
     }
 
-    public void AddIndex() //переход к следующему
+    public void AddIndex() //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     {
         _currentIndex++;
     }
 
-    public void ShowText() //показывает текст и включает анимацию учителю
+    public void ShowText() //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     {
         Teacher.Instance.StartTalking();
         PlayAudio();
         _textChange.text = _text[_currentIndex];
     }
 
-    private void PlayAudio() //воспроизводит текущую реплику
+    private void PlayAudio() //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     {
         _audioSource.Stop();
         _audioSource.clip = _audioClips[_currentIndex];
         _audioSource.Play();
     }
 
-    public void RemoveText() //деактивирует текст и отключает анимацию учителя
+    public void RemoveText() //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     {
         Teacher.Instance.StopTalking();
         _textField.SetActive(false);
@@ -63,11 +63,7 @@ public class ShowAnswers : MonoBehaviour
         var width = _mainCamera.pixelWidth;
         var height = _mainCamera.pixelHeight;
 
-        if (width / height == 16 / 9)
-        {
-            _textChange.fontSize = 70;
-        }
-        else if (width < height)
+        if (Mathf.Abs((float)width / height - 16f / 9f) < 0.01f || width < height)
         {
             _textChange.fontSize = 70;
         }
